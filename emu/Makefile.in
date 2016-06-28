@@ -10,6 +10,8 @@ LDFLAGS = -g
 OBJS= console.o dis6809.o emu6809.o inst6809.o int6809.o memory.o \
       misc.o miscutils.o intel.o
 
+all: sim6809
+
 sim6809:$(OBJS)
 	$(CC) $(LDFLAGS) -o $@ $(OBJS) $(LIBS)
 
