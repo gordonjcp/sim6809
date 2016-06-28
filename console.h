@@ -17,5 +17,5 @@
 
 
 
-extern int activate_console;
+// extern int activate_console;
 extern int debugio;

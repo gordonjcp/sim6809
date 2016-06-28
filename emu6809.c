@@ -206,10 +206,10 @@ null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null };
 
-tt_u16 (*eaddrmodb[])() = {
+tt_u16 (*eaddrmodb[6])() = {
   nula, immb, dir, idx, ext, nula, relb };
 
-tt_u16 (*eaddrmodw[])() = {
+tt_u16 (*eaddrmodw[6])() = {
   nula, immw, dir, idx, ext, nula, relw };
 
 tt_u8 getcc()
