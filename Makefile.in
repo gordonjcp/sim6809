@@ -20,6 +20,7 @@ $(distdir).tar.gz: $(distdir)
 $(distdir):
 	mkdir -p $(distdir)/emu
 	cp configure $(distdir)
+	cp config.h.in $(distdir)
 	cp Makefile.in $(distdir)
 	cp emu/Makefile.in $(distdir)/emu
 	cp emu/*.c $(distdir)/emu
