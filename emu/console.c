@@ -24,6 +24,7 @@
 
 #include "config.h"
 #include "emu6809.h"
+#include "motorola.h"
 #include "console.h"
 
 long cycles = 0;
@@ -284,7 +285,8 @@ void console_command()
       break;
     case 'l' :
       if (more_params(&strptr))
-	load_intelhex(readstr(&strptr));
+	// removeme load_intelhex(readstr(&strptr));
+	load_motos1(readstr(&strptr));
       else
 	printf("Syntax Error. Type 'h' to show help.\n");
       break;
@@ -391,7 +393,7 @@ void parse_cmdline(int argc, char **argv)
     exit(0);
   }
   while (argc-- > 0)
-    load_intelhex(*++argv);
+    load_motos1(*++argv);
 }
 
 int main(int argc, char **argv)

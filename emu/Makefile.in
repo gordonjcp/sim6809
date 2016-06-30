@@ -104,7 +104,7 @@ PROGRAMS = $(bin_PROGRAMS)
 am_sim6809_OBJECTS = console.$(OBJEXT) dis6809.$(OBJEXT) \
 	emu6809.$(OBJEXT) inst6809.$(OBJEXT) int6809.$(OBJEXT) \
 	memory.$(OBJEXT) misc.$(OBJEXT) miscutils.$(OBJEXT) \
-	intel.$(OBJEXT)
+	intel.$(OBJEXT) motorola.$(OBJEXT)
 sim6809_OBJECTS = $(am_sim6809_OBJECTS)
 sim6809_LDADD = $(LDADD)
 AM_V_P = $(am__v_P_@AM_V@)
@@ -252,7 +252,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CXXFLAGS = $(SIM6809_CFLAGS)
-sim6809_SOURCES = console.c dis6809.c emu6809.c inst6809.c int6809.c memory.c misc.c miscutils.c intel.c
+sim6809_SOURCES = console.c dis6809.c emu6809.c inst6809.c int6809.c memory.c misc.c miscutils.c intel.c motorola.c
 all: all-am
 
 .SUFFIXES:
@@ -348,6 +348,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/memory.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/misc.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/miscutils.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/motorola.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
