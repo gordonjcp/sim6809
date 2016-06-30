@@ -1,0 +1,4 @@
+# Makefile.am
+
+SUBDIRS = emu
+
