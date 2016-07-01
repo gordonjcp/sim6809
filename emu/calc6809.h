@@ -55,8 +55,8 @@ int ccvr, ccv8;
 
 int addrmode;
 
-tt_u16 (*eaddrmodb[6])();
-tt_u16 (*eaddrmodw[6])();
+tt_u16 (*eaddrmodb[7])();
+tt_u16 (*eaddrmodw[7])();
 
 #define GET_EAB (*eaddrmodb[addrmode])()
 #define GET_EAW (*eaddrmodw[addrmode])()

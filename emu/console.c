@@ -80,6 +80,11 @@ int m6809_system(void)
     set_memb(rs + 1, ra);
     rti();
     return 0;
+  case 3: 	// print character in B
+    putchar(rb);
+    rti();
+    return 0;
+
   default :
     printf("Unknown system call %d\n", ra);
     rti();
@@ -99,8 +104,10 @@ int execute()
     if (activate_console && n > 0)
       cycles += n;
     
-    if (n == SYSTEM_CALL)
-      r = activate_console = m6809_system();
+    if (n == SYSTEM_CALL) {
+      r = m6809_system();
+      if (r == 1) activate_console = 1;
+    }
     else if (n < 0) {
       printf("m6809 run time error, return code %d\n", n);
       activate_console = r = 1;

@@ -32,6 +32,7 @@ int load_motos1(char *filename)
   unsigned char value;
   FILE *fi;
 	
+  printf("loading %s\n", filename);
   fi=fopen(filename,"r");
   if(fi==NULL)
   {
