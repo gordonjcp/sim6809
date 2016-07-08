@@ -27,6 +27,8 @@
 #include "motorola.h"
 #include "console.h"
 
+#include "../hardware/acia.h"
+
 long cycles = 0;
 
 static int activate_console = 0;
@@ -98,9 +100,11 @@ int execute()
   int r = 0;
 
   do {
-    while ((n = m6809_execute()) > 0 && !activate_console)
+    while ((n = m6809_execute()) > 0 && !activate_console) {
       cycles += n;
+      (*acia_run)();
 
+    }
     if (activate_console && n > 0)
       cycles += n;
     
@@ -122,9 +126,11 @@ void execute_addr(tt_u16 addr)
   int n;
 
   while (!activate_console && rpc != addr) {
-    while ((n = m6809_execute()) > 0 && !activate_console && rpc != addr)
+    while ((n = m6809_execute()) > 0 && !activate_console && rpc != addr) {
       cycles += n;
-    
+
+      acia_run();
+    }
     if (n == SYSTEM_CALL)
       activate_console = m6809_system();
     else if (n < 0) {
@@ -411,7 +417,13 @@ int main(int argc, char **argv)
   console_init();
   m6809_init();
   setup_brkhandler();
+
+  // hardware drivers
+  acia_init(1);
+
   console_command();
 
+  // unload drivers
+  acia_destroy();
   return 0;
 }

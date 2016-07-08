@@ -23,6 +23,8 @@
 #include "emu6809.h"
 #include "console.h"
 
+#include "../hardware/acia.h"
+
 tt_u8 *ramdata;    /* 64 kb of ram */
 
 int memory_init(void)
@@ -34,7 +36,17 @@ int memory_init(void)
 
 tt_u8 get_memb(tt_u16 adr)
 {
-  return ramdata[adr];
+  // not hardware
+  if ((adr & 0xf000) != 0xe000) return ramdata[adr];
+
+  // hardware mapper
+  switch (adr & 0xff00) {
+    case 0xe100:	// ACIA
+    	return acia_rreg(adr & 0xff);
+    default:
+    	break;
+  }
+
 }
 
 tt_u16 get_memw(tt_u16 adr)
@@ -44,7 +56,19 @@ tt_u16 get_memw(tt_u16 adr)
 
 void set_memb(tt_u16 adr, tt_u8 val)
 {
-    ramdata[adr] = val;
+    // RAM or ROM map
+    if ((adr & 0xf000) != 0xe000) { // device map
+      ramdata[adr] = val;
+      return;
+    }
+
+    switch (adr & 0xff00) {
+      case 0xe100:	// ACIA
+        acia_wreg(adr & 0xff, val);
+	break;
+      default:
+        break;
+    }
 }
 
 void set_memw(tt_u16 adr, tt_u16 val)

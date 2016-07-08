@@ -6,13 +6,14 @@ AC_INIT([sim6809], [0.1.1], [gordon@gjcp.net])
 
 AC_CONFIG_SRCDIR([emu/emu6809.c])
 AM_CONFIG_HEADER([config.h])
-AM_INIT_AUTOMAKE([foreign])
+AM_INIT_AUTOMAKE([foreign subdir-objects])
 
 # Checks for programs.
 AC_PROG_CC
 
 # Checks for libraries.
-
+PKG_CHECK_MODULES([ALSA], [alsa], [], [AC_MSG_ERROR([*** ALSA lib required.])])
+AC_CHECK_LIB([util],[openpty])
 # Checks for header files.
 AC_CHECK_HEADERS([stdlib.h string.h unistd.h])
 

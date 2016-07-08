@@ -20,7 +20,9 @@ tt_u16 rpc, rx, ry, ru, rs;
 tt_u8 ra, rb, rdp;
 int nbcycle;
 int err6809; 
- 
+
+long cycles;
+
 #ifdef PC_HISTORY
 tt_u16 pchist[PC_HISTORY_SIZE];
 int pchistidx;

@@ -12,6 +12,8 @@ configure
 depcomp
 emu/.deps/
 emu/sim6809
+hardware/.deps/
+hardware/.dirstamp
 install-sh
 missing
 stamp-h1
